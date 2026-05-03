@@ -182,11 +182,10 @@
   }
   .hero__title .row {
     display: block;
-    overflow: hidden; /* fallback */
-    overflow: clip;
-    overflow-clip-margin: 0.45em;
+    overflow: visible;
+    line-height: 1; /* slight relax for descender room within row */
   }
-  .hero__title .row > span { display: inline-block; will-change: transform; }
+  .hero__title .row > span { display: inline-block; will-change: transform, opacity; }
   .hero__title em {
     font-style: normal;
     color: var(--fg-3);
@@ -624,11 +623,10 @@
   /* ---------- Reveal primitives ---------- */
   .word-row {
     display: block;
-    overflow: hidden; /* fallback */
-    overflow: clip;
-    overflow-clip-margin: 0.45em;
+    overflow: visible;
+    line-height: 1.02;
   }
-  .word-row > span { display: inline-block; transform: translateY(110%); will-change: transform; }
+  .word-row > span { display: inline-block; opacity: 0; transform: translateY(28px); will-change: transform, opacity; }
   .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
   .fade-up.in { opacity: 1; transform: translateY(0); }
   .stagger > * { opacity: 0; transform: translateY(14px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
@@ -641,7 +639,7 @@
       animation-iteration-count: 1 !important;
       transition-duration: 0.001ms !important;
     }
-    .word-row > span { transform: none !important; }
+    .word-row > span { transform: none !important; opacity: 1 !important; }
     .fade-up, .stagger > * { opacity: 1 !important; transform: none !important; }
     .card__media .reveal { clip-path: inset(0 0 0 0) !important; }
     .hero__scroll .line { animation: none; }
@@ -655,7 +653,7 @@
   }
 
   /* Print/no-js */
-  .no-js .word-row > span { transform: none; }
+  .no-js .word-row > span { transform: none; opacity: 1; }
   .no-js .fade-up, .no-js .stagger > * { opacity: 1; transform: none; }
 </style>
 </head>
@@ -1286,9 +1284,10 @@
       fades.forEach(f => f.classList.add('in'));
       return;
     }
-    window.gsap.set(words, { yPercent: 110 });
+    window.gsap.set(words, { y: 32, opacity: 0 });
     window.gsap.to(words, {
-      yPercent: 0,
+      y: 0,
+      opacity: 1,
       duration: 1.05,
       ease: 'expo.out',
       stagger: 0.07,
@@ -1424,9 +1423,9 @@
     const ctaWords = document.querySelectorAll('.contact h2 [data-word]');
     if (ctaWords.length) {
       window.gsap.fromTo(ctaWords,
-        { yPercent: 110 },
+        { y: 32, opacity: 0 },
         {
-          yPercent: 0, duration: 1.05, ease: 'expo.out', stagger: 0.07,
+          y: 0, opacity: 1, duration: 1.05, ease: 'expo.out', stagger: 0.07,
           scrollTrigger: {
             trigger: '.contact',
             start: 'top 80%',
