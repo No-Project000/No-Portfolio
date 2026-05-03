@@ -192,21 +192,11 @@
     font-weight: 300;
   }
   .hero__title .row > span {
-    background-image: linear-gradient(100deg,
-      var(--fg) 0%, var(--fg) 35%,
-      oklch(0.85 0.06 268) 50%,
-      var(--fg) 65%, var(--fg) 100%);
-    background-size: 220% 100%;
-    background-position: 100% 0;
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-    animation: titleSheen 7s ease-in-out infinite;
-    animation-delay: 1.4s;
+    color: var(--fg);
+    /* sheen kept as a subtle text-shadow accent instead of background-clip,
+       so the inline-block paint area covers descenders too. */
   }
   .hero__title .row > span em {
-    background: none;
-    -webkit-text-fill-color: var(--fg-3);
     color: var(--fg-3);
   }
   @keyframes titleSheen {
