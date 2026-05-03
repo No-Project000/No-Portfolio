@@ -50,6 +50,9 @@
     overflow-x: hidden;
   }
 
+  /* Anchor scroll offset — matches the fixed nav height so headings aren't hidden */
+  :where(.hero, .section, .contact, [id]) { scroll-margin-top: 88px; }
+
   ::selection { background: var(--accent); color: var(--bg); }
 
   a { color: inherit; text-decoration: none; }
@@ -1084,7 +1087,7 @@
       if (!target) return;
       e.preventDefault();
       const go = () => {
-        if (lenis) lenis.scrollTo(target, { offset: -60, duration: 1.4 });
+        if (lenis) lenis.scrollTo(target, { offset: -88, duration: 1.4 });
         else target.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'start' });
       };
       if (document.startViewTransition && !REDUCED) document.startViewTransition(go);
