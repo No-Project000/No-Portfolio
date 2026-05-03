@@ -156,11 +156,11 @@
   .hero__canvas-wrap canvas { width: 100%; height: 100%; display: block; }
   .hero__inner {
     position: relative; z-index: 2;
-    padding: clamp(120px, 18vh, 200px) var(--pad) 40px;
+    padding: clamp(96px, 13vh, 160px) var(--pad) 80px;
     max-width: var(--maxw);
     width: 100%;
     margin: 0 auto;
-    align-self: end;
+    align-self: center;
   }
   .hero__eyebrow {
     display: inline-flex; align-items: center; gap: 10px;
@@ -205,22 +205,35 @@
   }
 
   .hero__meta {
-    display: flex; flex-wrap: wrap; gap: 16px 56px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) auto;
+    gap: 24px 64px;
     margin-top: 44px;
     padding-top: 28px;
     border-top: 1px solid var(--line-soft);
     align-items: end;
-    justify-content: space-between;
   }
   .hero__meta p {
     margin: 0;
-    max-width: 460px;
+    max-width: 520px;
     color: var(--fg-2);
     font-size: 15px;
     line-height: 1.55;
   }
+  .hero__meta-blocks {
+    display: flex; gap: 48px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
   .hero__meta-block { display: flex; flex-direction: column; gap: 6px; }
   .hero__meta-block .v { font-family: var(--display); font-size: 18px; color: var(--fg); letter-spacing: -0.01em; }
+  @media (max-width: 720px) {
+    .hero__meta {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    .hero__meta-blocks { justify-content: flex-start; gap: 36px; }
+  }
 
   .hero__scroll {
     position: absolute; left: 50%; bottom: 28px;
@@ -694,7 +707,7 @@
           content, performance, audience research, paid media, SEO, community, and CRM —
           coordinated through a single orchestrator with a governance layer to prevent hallucination.
         </p>
-        <div style="display:flex; gap:48px; flex-wrap:wrap;">
+        <div class="hero__meta-blocks">
           <div class="hero__meta-block fade-up">
             <span class="mono">Currently</span>
             <span class="v">Open to opportunities</span>
